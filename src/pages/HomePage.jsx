@@ -2,16 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BOOK_BASE_URL } from "../constants/url.constant";
 import { Link, useParams } from "react-router-dom";
+import { useBooksContext } from "../booksContext";
 
 function HomePage() {
-  const [books, setBooks] = useState([]);
+  const { books, setBooks } = useBooksContext();
   const { bookId } = useParams();
 
   useEffect(() => {
     async function getBooks() {
       try {
-        const { data } = await axios.get(BOOK_BASE_URL);
-        setBooks(data);
+        const { data: booksfetced } = await axios.get(BOOK_BASE_URL);
+        setBooks(booksfetced);
       } catch (error) {
         console.log(error);
       }
@@ -31,7 +32,7 @@ function HomePage() {
             >
               <p>{book.title}</p>
               <p>{book.description}</p>
-              <Link to={`/book/${bookId}`}>
+              <Link to={`/book/${book._id}`}>
                 <button className="absolute bottom-1 border border-violet-600 bg-violet-600 text-zinc-50 py-1 ">
                   More info
                 </button>
