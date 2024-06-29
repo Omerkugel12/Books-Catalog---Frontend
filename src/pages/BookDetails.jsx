@@ -5,8 +5,8 @@ import axios from "axios";
 import { BOOK_BASE_URL } from "../constants/url.constant";
 
 function BookDetails() {
-  const { books, setBooks } = useBooksContext();
-  const [book, setBook] = useState(null);
+  // const { books, setBooks } = useBooksContext();
+  const { book, setBook } = useBooksContext();
   const { bookId } = useParams();
 
   useEffect(() => {

@@ -37,14 +37,22 @@ function HomePage() {
     <>
       <h1 className="text-center text-6xl">Our Books</h1>
       <div className="text-center my-10">
-        <input
+        {/* <input
           className="border border-y-black p-2"
           name="genres"
           type="text"
           placeholder="Search by genre"
           value={searchParams.get("genres") || ""}
           onChange={handleFilterChange}
-        />
+        /> */}
+        <select name="genres" id="">
+          <option value="">Dystopian</option>
+          <option value="">Science Fiction</option>
+          <option value="">Fiction</option>
+          <option value="">Coming-of-age</option>
+          <option value="">Historical Fiction</option>
+          <option value=""></option>
+        </select>
       </div>
       <ul className="flex flex-row flex-wrap space-y-10 space-x-4">
         {books.map((book) => {

@@ -8,9 +8,10 @@ export function useBooksContext() {
 
 export function BooksProvider({ children }) {
   const [books, setBooks] = useState([]);
+  const [book, setBook] = useState(null);
 
   return (
-    <BooksContext.Provider value={{ books, setBooks }}>
+    <BooksContext.Provider value={{ books, setBooks, book, setBook }}>
       {children}
     </BooksContext.Provider>
   );
