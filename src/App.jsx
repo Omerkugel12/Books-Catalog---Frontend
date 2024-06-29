@@ -5,6 +5,12 @@ import BookDetails from "./pages/BookDetails";
 function App() {
   return (
     <>
+      <nav>
+        <h1>Books Catalog</h1>
+        <ul>
+          <li>HomePage</li>
+        </ul>
+      </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/book/:id" element={<BookDetails />} />
