@@ -6,12 +6,10 @@ import { BooksProvider } from "./booksContext";
 function App() {
   return (
     <>
-      <BooksProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/book/:bookId" element={<BookDetails />} />
-        </Routes>
-      </BooksProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/book/:bookId" element={<BookDetails />} />
+      </Routes>
     </>
   );
 }

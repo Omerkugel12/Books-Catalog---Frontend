@@ -14,6 +14,7 @@ function HomePage() {
       const options = {
         params: {
           genres: searchParams.get("genres"),
+          title: searchParams.get("title"),
         },
       };
       try {
@@ -26,34 +27,71 @@ function HomePage() {
     getBooks();
   });
 
-  function handleFilterChange(ev) {
-    const inputName = ev.target.name;
-    const value = ev.target.value;
-    searchParams.set(inputName, value);
+  function handleFilterSubmit(ev) {
+    ev.preventDefault();
+    const form = ev.target;
+    const formData = new FormData(form);
+    const title = formData.get("title");
+    const genres = formData.get("genres");
+
+    searchParams.set("title", title);
+    searchParams.set("genres", genres);
     setSearchParams(searchParams);
   }
+
+  // function handleFilterChange(ev) {
+  //   const inputName = ev.target.name;
+  //   const value = ev.target.value;
+  //   searchParams.set(inputName, value);
+  //   setSearchParams(searchParams);
+  // }
 
   return (
     <>
       <h1 className="text-center text-6xl">Our Books</h1>
-      <div className="text-center my-10">
-        {/* <input
-          className="border border-y-black p-2"
-          name="genres"
-          type="text"
-          placeholder="Search by genre"
-          value={searchParams.get("genres") || ""}
-          onChange={handleFilterChange}
-        /> */}
-        <select name="genres" id="">
-          <option value="">Dystopian</option>
-          <option value="">Science Fiction</option>
-          <option value="">Fiction</option>
-          <option value="">Coming-of-age</option>
-          <option value="">Historical Fiction</option>
-          <option value=""></option>
-        </select>
-      </div>
+      <form
+        onSubmit={handleFilterSubmit}
+        className="flex justify-center items-center gap-4"
+      >
+        <div className="my-10 flex flex-col  justify-center items-center">
+          <label htmlFor="title">Search by book name</label>
+          <input
+            className="border border-violet-800"
+            type="text"
+            id="title"
+            name="title"
+            // value={searchParams.get("title") || ""}
+            // onChange={handleFilterChange}
+            placeholder="Enter book name..."
+          />
+        </div>
+        <div className="my-10 flex flex-col  justify-center items-center">
+          <label htmlFor="genres">Select genre</label>
+          <select
+            className="border border-indigo-800"
+            name="genres"
+            id="genres"
+            // value={searchParams.get("genres") || ""}
+            // onChange={handleFilterChange}
+            placeholder="nolekm"
+          >
+            <option value="">All</option>
+            <option value="Dystopian">Dystopian</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Coming-of-age">Coming-of-age</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+            <option value="Philosophical Fiction">Philosophical Fiction</option>
+            <option value="Classic">Classic</option>
+            <option value="Gothic">Gothic</option>
+            <option value="Realist Fiction">Realist Fiction</option>
+            <option value="Modernist">Modernist</option>
+          </select>
+        </div>
+        <button className="border bg-emerald-600 text-red-50 text-2xl rounded-lg p-2">
+          Apply filter
+        </button>
+      </form>
       <ul className="flex flex-row flex-wrap space-y-10 space-x-4">
         {books.map((book) => {
           return (
